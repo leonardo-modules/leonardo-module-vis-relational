@@ -1,0 +1,23 @@
+{% extends widget.get_base_template %}
+
+{% block content %}
+<div id="angular_gauge_{{ widget.fe_identifier }}"></div>
+<script type="text/javascript">
+
+function angular_gauge_{{ widget.id }}(placeholder, configuration) {
+
+}
+
+$(document).ready(function() {
+  var placeholder = '#angular_gauge_{{ widget.fe_identifier }}'
+  var parent_box = $('#pangular_gauge_{{ widget.fe_identifier }}').parent();
+  width = parent_box.width();
+  var configuration = {
+    'width': width,
+    'height': width
+  }
+  angular_gauge_{{ widget.id }}(placeholder, configuration);
+});
+
+</script>
+{% endblock %}
