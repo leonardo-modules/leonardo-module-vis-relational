@@ -26,6 +26,8 @@ class Default(object):
     @property
     def widgets(self):
         return [
+            SunburstWidget,
+            TreemapWidget
         ]
 
 class NavConfig(AppConfig, Default):
