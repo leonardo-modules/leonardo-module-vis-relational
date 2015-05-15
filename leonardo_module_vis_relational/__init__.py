@@ -26,7 +26,6 @@ class Default(object):
     @property
     def widgets(self):
         return [
-            PolarClockWidget,
         ]
 
 class NavConfig(AppConfig, Default):
