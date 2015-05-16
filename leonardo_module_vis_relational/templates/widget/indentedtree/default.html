@@ -3,7 +3,7 @@
 {% block content %}
 <div id="{{ widget.fe_identifier }}-graph" class="indented-tree"></div>
 <script>
-(function() {
+function indented_tree_{{ widget.id }}(placeholder, config) {
 
 var w = {{ widget.get_width }},
     h = {{ widget.get_height }},
@@ -25,7 +25,7 @@ var vis = d3.select("#{{ widget.fe_identifier }}-graph").append("svg:svg")
   .append("svg:g")
     .attr("transform", "translate(20,30)");
 
-d3.json("/api/sitemap/json/", function(error, json) {
+d3.json("/sitemap/json/", function(error, json) {
   json.x0 = 0;
   json.y0 = 0;
   update(root = json);
@@ -135,6 +135,17 @@ function update(source) {
     return d._children ? "#3182bd" : d.children ? "#c6dbef" : "#fd8d3c";
   }
 
-})();
+}
+
+$(document).ready(function() {
+  var placeholder = '#{{ widget.fe_identifier }}-graph'
+  var parent_box = $(placeholder).parent();
+  width = parent_box.width();
+  var config = {
+    'width': width,
+    'height': width
+  }
+  indented_tree_{{ widget.id }}(placeholder, config);
+});
 </script>
 {% endblock %}

@@ -3,10 +3,11 @@
 {% block content %}
 <div id="{{ widget.fe_identifier }}-graph" class="sunburst"></div>
 <script>
-(function() {
 
-  var width = {{ widget.get_width }},
-    height = {{ widget.get_height }},
+function sunburst_{{ widget.id }}(placeholder, config) {
+
+  var width = config.width,
+    height = config.height,
     radius = width / 2,
     x = d3.scale.linear().range([0, 2 * Math.PI]),
     y = d3.scale.pow().exponent(1.3).domain([0, 1]).range([0, radius]),
@@ -29,7 +30,7 @@
     .innerRadius(function(d) { return Math.max(0, d.y ? y(d.y) : d.y); })
     .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
 
-  d3.json("/api/sitemap/json/", function(error, json) {
+  d3.json("/sitemap/json/", function(error, json) {
     var nodes = partition.nodes(json);
 
     var color = d3.scale.category20c();
@@ -143,7 +144,17 @@ function colour(d) {
     return rgb.r * .299 + rgb.g * .587 + rgb.b * .114;
   }
 
-})();
-</script>
+}
 
+$(document).ready(function() {
+  var placeholder = '#{{ widget.fe_identifier }}-graph'
+  var parent_box = $(placeholder).parent();
+  width = parent_box.width();
+  var config = {
+    'width': width,
+    'height': width
+  }
+  sunburst_{{ widget.id }}(placeholder, config);
+});
+</script>
 {% endblock %}

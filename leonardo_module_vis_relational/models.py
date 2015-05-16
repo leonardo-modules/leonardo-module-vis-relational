@@ -3,10 +3,10 @@
 from django.db import models
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
-from boardie.models import WidgetMixin
+
 from yamlfield.fields import YAMLField
 
-from bulbs.neo4jserver import Graph, Config
+from leonardo.module.web.models import Widget
 
 SOURCE_TYPES = (
     ('dummy', _('Dummy data')),
@@ -61,7 +61,7 @@ TEST_LINKS = [
     [ 5, 2 ]
 ];
 
-class GraphSource(models.Model):
+class RelationalDataSource(models.Model):
     type  = models.CharField(max_length=255, verbose_name=_("type"), default='neo4j', choices=SOURCE_TYPES)
     name = models.CharField(max_length=255, verbose_name=_("name"))
     data = YAMLField(verbose_name=_("data"), help_text=_('For neo4j set: host, port, ssl, graph, user, passwd; for graph files: url'))
@@ -135,19 +135,14 @@ class GraphSource(models.Model):
         return output
 
     class Meta:
-        verbose_name = _("graph source")
-        verbose_name_plural = _("graph sources")
+        verbose_name = _("Graph data source")
+        verbose_name_plural = _("graph data sources")
 
 class GraphDrawingWidget(Widget):
     """
     Graph widget mixin.
     """
-    graph_source = models.ForeignKey(GraphSource, verbose_name=_('data source'), blank=True, null=True)
-    filters = YAMLField(verbose_name=_("filters"), blank=True, null=True)
+    data = models.ForeignKey(RelationalDataSource, verbose_name=_('data source'), blank=True, null=True)
     
-    @property
-    def source(self):
-        return self.graph_source
-
     class Meta:
         abstract = True

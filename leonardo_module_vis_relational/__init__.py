@@ -18,14 +18,18 @@ class Default(object):
     def apps(self):
 
         return [
-
             'leonardo_module_vis_relational',
-
         ]
 
     @property
     def widgets(self):
         return [
+            BubbleChartWidget,
+            CirclePackingWidget,
+            DendrogramWidget,
+            IcicleWidget,
+            IndentedTreeWidget,
+            ReingoldTilfordTreeWidget,
             SunburstWidget,
             TreemapWidget
         ]

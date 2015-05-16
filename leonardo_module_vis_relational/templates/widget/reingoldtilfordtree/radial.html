@@ -3,12 +3,12 @@
 {% block content %}
 <div id="{{ widget.fe_identifier }}-graph" class="reingold-tree"></div>
 <script>
-(function() {
+function tree_{{ widget.id }}(placeholder, config) {
 
-  var width = {{ widget.get_width }},
-    height = {{ widget.get_height }};
+  var width = config.width,
+    height = config.height;
 
-  var diameter = {{ widget.get_height }};
+  var diameter = config.height;
 
   var tree = d3.layout.tree()
     .size([360, diameter / 2 - 120])
@@ -50,6 +50,17 @@
   });
 
   d3.select(self.frameElement).style("height", diameter + "px");
-})();
+}
+
+$(document).ready(function() {
+  var placeholder = '#{{ widget.fe_identifier }}-graph'
+  var parent_box = $(placeholder).parent();
+  width = parent_box.width();
+  var config = {
+    'width': width,
+    'height': width
+  }
+  tree_{{ widget.id }}(placeholder, config);
+});
 </script>
 {% endblock %}

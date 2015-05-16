@@ -1,20 +1,19 @@
 {% extends widget.get_base_template %}
 
 {% block content %}
-<div id="{{ widget.fe_identifier }}-graph" class="treemap">
+<div id="{{ widget.fe_identifier }}-graph" class="treemap"></div>
 {% comment %}
 <form>
   <label><input type="radio" name="mode" value="size" checked> Size</label>
   <label><input type="radio" name="mode" value="count"> Count</label>
 </form>
 {% endcomment %}
-</div>
 <script>
-(function() {
+function treemap_{{ widget.id }}(placeholder, config) {
 
   var margin = {top: 0, right: 0, bottom: 0, left: 0},
-    width = {{ widget.get_width }} - margin.left - margin.right,
-    height = {{ widget.get_height }} - margin.top - margin.bottom;
+    width = config.width - margin.left - margin.right,
+    height = config.height - margin.top - margin.bottom;
 
   var color = d3.scale.category20c();
 
@@ -30,7 +29,7 @@
 //    .style("left", margin.left + "px")
 //    .style("top", margin.top + "px");
 
-  d3.json("/api/sitemap/json/", function(error, root) {
+  d3.json("/sitemap/json/", function(error, root) {
     var node = div.datum(root).selectAll(".node")
       .data(treemap.nodes)
       .enter().append("div")
@@ -60,6 +59,18 @@
       .style("width", function(d) { return Math.max(0, d.dx - 1) + "px"; })
       .style("height", function(d) { return Math.max(0, d.dy - 1) + "px"; });
   }
-})();
+};
+
+$(document).ready(function() {
+  var placeholder = '#{{ widget.fe_identifier }}-graph'
+  var parent_box = $(placeholder).parent();
+  width = parent_box.width();
+  var config = {
+    'width': width,
+    'height': width
+  }
+  treemap_{{ widget.id }}(placeholder, config);
+});
+
 </script>
 {% endblock %}

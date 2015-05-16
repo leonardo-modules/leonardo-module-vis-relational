@@ -3,10 +3,10 @@
 {% block content %}
 <div id="{{ widget.fe_identifier }}-graph" class="dendrogram"></div>
 <script>
-(function() {
+function dendrogram_{{ widget.id }}(placeholder, config) {
 
-  var width = {{ widget.get_width }},
-    height = {{ widget.get_height }};
+  var width = config.width,
+    height = config.height;
 
   var radius = height / 2;
 
@@ -22,7 +22,7 @@
     .append("g")
       .attr("transform", "translate(" + radius + "," + radius + ")");
 
-  d3.json("/api/sitemap/json/", function(error, root) {
+  d3.json("/sitemap/json/", function(error, root) {
     var nodes = cluster.nodes(root);
 
     var link = svg.selectAll("path.link")
@@ -49,6 +49,18 @@
 
   d3.select(self.frameElement).style("height", radius * 2 + "px");
 
-})();
+}
+
+$(document).ready(function() {
+  var placeholder = '#{{ widget.fe_identifier }}-graph'
+  var parent_box = $(placeholder).parent();
+  width = parent_box.width();
+  var config = {
+    'width': width,
+    'height': width
+  }
+  dendrogram_{{ widget.id }}(placeholder, config);
+});
+
 </script>
 {% endblock %}

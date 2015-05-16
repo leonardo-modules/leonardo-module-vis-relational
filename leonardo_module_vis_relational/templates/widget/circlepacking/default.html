@@ -3,7 +3,8 @@
 {% block content %}
 <div id="{{ widget.fe_identifier }}-graph" class="circle-packing"></div>
 <script>
-(function() {
+
+function circle_packing_{{ widget.id }}(placeholder, config) {
 
   var diameter = {{ widget.get_height }},
     format = d3.format(",d");
@@ -18,7 +19,7 @@
     .append("g")
       .attr("transform", "translate(2,2)");
 
-  d3.json("/api/sitemap/json/", function(error, root) {
+  d3.json("/sitemap/json/", function(error, root) {
     var node = svg.datum(root).selectAll(".node")
       .data(pack.nodes)
       .enter().append("g")
@@ -39,6 +40,18 @@
 
   d3.select(self.frameElement).style("height", diameter + "px");
 
-})();
+}
+
+$(document).ready(function() {
+  var placeholder = '#{{ widget.fe_identifier }}-graph'
+  var parent_box = $(placeholder).parent();
+  width = parent_box.width();
+  var config = {
+    'width': width,
+    'height': width
+  }
+  circle_packing_{{ widget.id }}(placeholder, config);
+});
+
 </script>
 {% endblock %}
