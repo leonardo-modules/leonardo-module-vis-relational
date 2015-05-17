@@ -9,9 +9,11 @@ class SunburstWidget(Widget):
     """
     Widget which shows sunburt diagram.
     """
-    data = models.ForeignKey(RelationalDataSource, verbose_name=_('data source'), blank=True, null=True)
- 
+    data = models.ForeignKey(RelationalDataSource, verbose_name=_('data source'), blank=True, null=True) 
     zoom = models.BooleanField(verbose_name=_('Zoom'), default=False)
+
+    def get_data(self):
+        return "/sitemap/json/"
 
     class Meta:
         abstract = True

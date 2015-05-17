@@ -13,6 +13,9 @@ class DendrogramWidget(Widget):
     collapse = models.BooleanField(verbose_name=_('Collapse'), default=False)
     orientation = models.CharField(verbose_name=_('Orientation'), default='left', max_length=20)
 
+    def get_data(self):
+        return "/sitemap/json/"
+
     class Meta:
         abstract = True
         verbose_name = _("Dendrogram")
