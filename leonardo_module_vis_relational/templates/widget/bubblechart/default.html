@@ -20,7 +20,7 @@ function bubble_chart_{{ widget.id }}(placeholder, config) {
     .attr("height", diameter)
     .attr("class", "bubble");
 
-  d3.json("/sitemap/json/", function(error, root) {
+  d3.json("{{ widget.get_data }}", function(error, root) {
     var node = svg.selectAll(".node")
       .data(bubble.nodes(classes(root))
       .filter(function(d) { return !d.children; }))

@@ -5,8 +5,8 @@
 <script>
 function indented_tree_{{ widget.id }}(placeholder, config) {
 
-var w = {{ widget.get_width }},
-    h = {{ widget.get_height }},
+var w = config.width,
+    h = config.width,
     i = 0,
     barHeight = 20,
     barWidth = w * .8,
@@ -25,7 +25,7 @@ var vis = d3.select("#{{ widget.fe_identifier }}-graph").append("svg:svg")
   .append("svg:g")
     .attr("transform", "translate(20,30)");
 
-d3.json("/sitemap/json/", function(error, json) {
+d3.json("{{ widget.get_data }}", function(error, json) {
   json.x0 = 0;
   json.y0 = 0;
   update(root = json);

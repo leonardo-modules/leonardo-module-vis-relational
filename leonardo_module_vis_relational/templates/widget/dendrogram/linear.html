@@ -3,7 +3,6 @@
 {% block content %}
 <div id="{{ widget.fe_identifier }}-graph" class="dendrogram"></div>
 <script>
-
 function dendrogram_{{ widget.id }}(placeholder, config) {
 
   var width = config.width,
@@ -15,7 +14,7 @@ function dendrogram_{{ widget.id }}(placeholder, config) {
   var diagonal = d3.svg.diagonal()
       .projection(function(d) { return [d.y, d.x]; });
 
-  var svg = d3.select("body").append("svg")
+  var svg = d3.select("#{{ widget.fe_identifier }}-graph").append("svg")
       .attr("width", width)
       .attr("height", height)
     .append("g")
@@ -59,5 +58,6 @@ $(document).ready(function() {
   }
   dendrogram_{{ widget.id }}(placeholder, config);
 });
+
 </script>
 {% endblock %}
