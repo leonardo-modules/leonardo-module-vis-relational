@@ -30,7 +30,7 @@ function sunburst_{{ widget.id }}(placeholder, config) {
     .innerRadius(function(d) { return Math.max(0, d.y ? y(d.y) : d.y); })
     .outerRadius(function(d) { return Math.max(0, y(d.y + d.dy)); });
 
-  d3.json("/sitemap/json/", function(error, json) {
+  d3.json("{{ widget.get_data }}", function(error, json) {
     var nodes = partition.nodes(json);
 
     var color = d3.scale.category20c();

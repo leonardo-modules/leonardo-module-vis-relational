@@ -21,7 +21,7 @@ function tree_{{ widget.id }}(placeholder, config) {
     .append("g")
       .attr("transform", "translate(40,0)");
 
-  d3.json("/api/sitemap/json/", function(error, json) {
+  d3.json("{{ widget.get_data }}", function(error, json) {
     var nodes = tree.nodes(json),
       links = tree.links(nodes);
 
