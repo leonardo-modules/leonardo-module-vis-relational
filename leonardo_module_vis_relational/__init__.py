@@ -12,7 +12,20 @@ default_app_config = 'leonardo_module_vis_relational.NavConfig'
 
 class Default(object):
 
-    optgroup = ('Relational vis')
+    optgroup = ('Relational visualizations')
+
+    js_files = [
+        'vis/js/bubblechart.js'
+        'vis/js/circlepacking.js'
+        'vis/js/dendrogramlinear.js'
+        'vis/js/dendrogramradial.js'
+        'vis/js/icicle.js'
+        'vis/js/indentedtree.js'
+        'vis/js/sunburst.js'
+        'vis/js/reingoldtilfordtreeradial.js'
+        'vis/js/reingoldtilfordtreelinear.js'
+        'vis/js/treemap.js'
+    ]
 
     @property
     def apps(self):
