@@ -27,6 +27,15 @@ class Default(object):
         'vis/js/treemap.js'
     ]
 
+    css_files = [
+        'vis/scss/bubblechart.scss',
+        'vis/scss/circlepacking.scss',
+        'vis/scss/dendrogram.scss',
+        'vis/scss/icicle.scss'
+        'vis/scss/indentedtree.scss'
+        'vis/scss/treemap.scss'
+    ]
+
     @property
     def apps(self):
 
