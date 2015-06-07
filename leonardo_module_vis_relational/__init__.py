@@ -27,7 +27,7 @@ class Default(object):
         'vis/js/treemap.js'
     ]
 
-    css_files = [
+    scss_files = [
         'vis/scss/bubblechart.scss',
         'vis/scss/circlepacking.scss',
         'vis/scss/dendrogram.scss',
