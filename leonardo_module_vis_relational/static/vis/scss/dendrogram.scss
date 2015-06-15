@@ -2,6 +2,7 @@
 .dendrogram {
 
   .node {
+
     font: 10px sans-serif;
 
     circle {
@@ -9,6 +10,12 @@
       stroke: $text-color;
       stroke-width: 1.5px;
     }
+    
+    text {
+      fill: $text-color;
+    }
+
+  }
 
   .link {
     fill: none;
