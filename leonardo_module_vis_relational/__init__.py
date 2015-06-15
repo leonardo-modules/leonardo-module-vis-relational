@@ -33,6 +33,7 @@ class Default(object):
         'vis/scss/dendrogram.scss',
         'vis/scss/icicle.scss',
         'vis/scss/indentedtree.scss',
+        'vis/scss/reingoldtilfordtree.scss',
         'vis/scss/treemap.scss'
     ]
 
