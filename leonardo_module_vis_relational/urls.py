@@ -1,6 +1,4 @@
 
-import simplejson
-
 from django.conf import settings
 from django.conf.urls import include, patterns, url
 from django.conf.urls.static import static
@@ -53,11 +51,8 @@ def site_map_json(request):
     page_list = Page.objects.filter(level=0, active=True)
     for page in page_list:
         root['children'].append(_get_page_dict(page))
-    #response_content = simplejson.dumps(root)
     return JsonResponse(root)
 
 urlpatterns = patterns('',
-
-                        url('^sitemap/json/$', site_map_json, name='site_map_json'),
-
-                       )
+    url('^sitemap/json/$', site_map_json, name='site_map_json'),
+)

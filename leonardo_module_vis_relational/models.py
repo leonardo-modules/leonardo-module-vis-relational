@@ -4,7 +4,7 @@ from django.db import models
 from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 
-from yamlfield.fields import YAMLField
+#from yamlfield.fields import YAMLField
 
 from leonardo.module.web.models import Widget
 
@@ -64,7 +64,8 @@ TEST_LINKS = [
 class RelationalDataSource(models.Model):
     type  = models.CharField(max_length=255, verbose_name=_("type"), default='neo4j', choices=SOURCE_TYPES)
     name = models.CharField(max_length=255, verbose_name=_("name"))
-    data = YAMLField(verbose_name=_("data"), help_text=_('For neo4j set: host, port, ssl, graph, user, passwd; for graph files: url'))
+    #data = YAMLField(verbose_name=_("data"), help_text=_('For neo4j set: host, port, ssl, graph, user, passwd; for graph files: url'))
+    data = models.TextField(verbose_name=_("data"), help_text=_('For neo4j set: host, port, ssl, graph, user, passwd; for graph files: url'))
 
     def __unicode__(self):
         return self.name
