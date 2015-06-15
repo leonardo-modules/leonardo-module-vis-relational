@@ -1,0 +1,26 @@
+
+.reingold-tree {
+
+  .node {
+
+    font: 10px sans-serif;
+
+    circle {
+      fill: $brand-primary;
+      stroke: $text-color;
+      stroke-width: 1.5px;
+    }
+    
+    text {
+      fill: $text-color;
+    }
+
+  }
+
+  .link {
+    fill: none;
+    stroke: $text-color;
+    stroke-width: 1.5px;
+  }
+
+}
