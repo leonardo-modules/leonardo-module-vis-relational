@@ -4,8 +4,8 @@
 <div id="orbit_{{ widget.fe_identifier }}" class="orbit"></div>
 <script type="text/javascript">
 
-function redraw_orbit_{{ widget.id }}(){
-  var placeholder = '#orbit_{{ widget.fe_identifier }}'
+function draw_orbit_{{ widget.id }}(){
+  var placeholder = '#orbit_{{ widget.fe_identifier }}';
   var parent_box = $(placeholder).parent();
   width = parent_box.width();
   d3.select(placeholder+" svg").remove();
@@ -18,8 +18,8 @@ function redraw_orbit_{{ widget.id }}(){
 }
 
 $(document).ready(function() {
-  redraw_orbit_{{ widget.id }}();
-  window.addEventListener("resize", redraw_orbit_{{ widget.id }});
+  draw_orbit_{{ widget.id }}();
+  window.addEventListener("resize", draw_orbit_{{ widget.id }});
 });
 
 </script>

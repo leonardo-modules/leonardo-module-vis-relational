@@ -21,13 +21,14 @@ function arc_diagram(config) {
         var r = parseFloat(circle.attr("r"));
         var text = circle.attr("id");
 
-        var tooltip = d3.select(config.placeholder)
+        var tooltip = d3.select(config.placeholder+" g")
             .append("text")
             .text(text)
             .attr("x", x)
             .attr("y", y)
             .attr("dy", -r * 2)
             .attr("id", config.placeholder+"tooltip");
+//            .attr("class", "tooltip");
 
         var offset = tooltip.node().getBBox().width / 2;
 
@@ -113,7 +114,7 @@ function arc_diagram(config) {
             .attr("r",  function(d, i) { return radius; })
             .style("fill",   function(d, i) { return color(d.group); })
             .on("mouseover", function(d, i) { addTooltip(d3.select(this)); })
-            .on("mouseout",  function(d, i) { d3.select("#"+config.placeholder+"tooltip").remove(); });
+            .on("mouseout",  function(d, i) { d3.select("#"+config.placeholder+" .tooltip").remove(); });
     }
 
     // Draws nice arcs for each link on plot
@@ -127,8 +128,6 @@ function arc_diagram(config) {
             .interpolate("basis")
             .tension(0)
             .angle(function(d) { return radians(d); });
-
-        console.log(config.placeholder);
 
         // add links
         d3.select(config.placeholder+' g').selectAll(".link")

@@ -5,13 +5,13 @@
 <script type="text/javascript">
 
 function redraw_arc_diagram_{{ widget.id }}(){
-  var placeholder = '#arc-diagram_{{ widget.fe_identifier }}'
+  var placeholder = '#arc-diagram_{{ widget.fe_identifier }}';
   var parent_box = $(placeholder).parent();
   width = parent_box.width();
   d3.select(placeholder+" svg").remove();
   arc_diagram({
     'width': width,
-    'height': width,
+    'height': width/2,
     'placeholder': placeholder,
     'data_source': "{{ widget.get_data }}"
   });

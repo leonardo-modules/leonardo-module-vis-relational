@@ -3,6 +3,7 @@
 Leonardo Relational Visualizations
 ==================================
 
+http://bost.ocks.org/mike/chart/ Towards Reusable Charts
 
 Treemap
 -------
