@@ -139,11 +139,14 @@ class RelationalDataSource(models.Model):
         verbose_name = _("Graph data source")
         verbose_name_plural = _("graph data sources")
 
-class GraphDrawingWidget(Widget):
+class RelationalVisualizationWidget(Widget):
     """
     Graph widget mixin.
     """
-    data = models.ForeignKey(RelationalDataSource, verbose_name=_('data source'), blank=True, null=True)
+    data = models.ForeignKey(RelationalDataSource, verbose_name=_('Data source'), blank=True, null=True)
+
+    def get_data(self):
+        return "/sitemap/json/"
     
     class Meta:
         abstract = True

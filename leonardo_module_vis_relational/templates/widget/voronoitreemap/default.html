@@ -1,15 +1,15 @@
 {% extends widget.get_base_template %}
 
 {% block content %}
-<div id="sunburst_{{ widget.fe_identifier }}" class="sunburst"></div>
+<div id="voronoitreemap_{{ widget.fe_identifier }}" class="voronoitreemap"></div>
 <script type="text/javascript">
 
-function redraw_sunburst_{{ widget.id }}(){
-  var placeholder = '#sunburst_{{ widget.fe_identifier }}'
+function redraw_voronoitreemap_{{ widget.id }}(){
+  var placeholder = '#voronoitreemap_{{ widget.fe_identifier }}'
   var parent_box = $(placeholder).parent();
   width = parent_box.width();
   d3.select(placeholder+" svg").remove();
-  sunburst({
+  voronoitreemap({
     'width': width,
     'height': width,
     'placeholder': placeholder,
@@ -18,9 +18,10 @@ function redraw_sunburst_{{ widget.id }}(){
 }
 
 $(document).ready(function() {
-  redraw_sunburst_{{ widget.id }}();
-  window.addEventListener("resize", redraw_sunburst_{{ widget.id }});
+  redraw_voronoitreemap_{{ widget.id }}();
+  window.addEventListener("resize", redraw_voronoitreemap_{{ widget.id }});
 });
 
 </script>
 {% endblock %}
+

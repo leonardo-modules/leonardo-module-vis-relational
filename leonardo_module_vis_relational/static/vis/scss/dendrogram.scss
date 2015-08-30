@@ -3,16 +3,16 @@
 
   .node {
 
-    font: 10px sans-serif;
-
     circle {
       fill: $brand-primary;
       stroke: $text-color;
-      stroke-width: 1.5px;
+      stroke-width: 2px;
     }
     
     text {
-      fill: $text-color;
+      fill: $tooltip-color;
+      background-color: $tooltip-bg;
+      border-radius: 2px;
     }
 
   }
@@ -20,7 +20,8 @@
   .link {
     fill: none;
     stroke: $text-color;
-    stroke-width: 1.5px;
+    stroke-opacity: .5;
+    stroke-width: 2px;
   }
 
 }

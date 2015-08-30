@@ -1,19 +1,26 @@
 {% extends widget.get_base_template %}
 
 {% block content %}
-<div id="{{ widget.fe_identifier }}-graph" class="treemap"></div>
+<div id="treemap_{{ widget.fe_identifier }}" class="treemap"></div>
 <script>
-$(document).ready(function() {
-  var placeholder = '#{{ widget.fe_identifier }}-graph'
+
+function redraw_treemap_{{ widget.id }}(){
+  var placeholder = '#treemap_{{ widget.fe_identifier }}'
   var parent_box = $(placeholder).parent();
   width = parent_box.width();
-  var config = {
+  d3.select(placeholder+" > div").remove();
+  treemap({
     'width': width,
     'height': width*2/3,
     'placeholder': placeholder,
     'data_source': "{{ widget.get_data }}"
-  }
-  treemap(config);
+  });
+}
+
+$(document).ready(function() {
+  redraw_treemap_{{ widget.id }}();
+  window.addEventListener("resize", redraw_treemap_{{ widget.id }});
 });
+
 </script>
 {% endblock %}

@@ -2,13 +2,13 @@
 .icicle {
 
   .node {
-    fill: #ddd;
-    stroke: #fff;
+    stroke: $text-color;
+    stroke-width: 2px;
   }
 
   .icicle .label {
-    font: 10px sans-serif;
-    text-anchor: middle;
+    /*font: 10px;*/
+    /*text-anchor: middle;*/
   }
 
 }

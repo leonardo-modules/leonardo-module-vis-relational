@@ -4,18 +4,13 @@ import time
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from leonardo.module.web.models import Widget
-from leonardo_module_vis_relational.models import RelationalDataSource
+from leonardo_module_vis_relational.models import RelationalVisualizationWidget
 
-class TreemapWidget(Widget):
+class TreemapWidget(RelationalVisualizationWidget):
     """
     Widget which shows treemap.
     """
-    data = models.ForeignKey(RelationalDataSource, verbose_name=_('data source'), blank=True, null=True) 
     zoom = models.BooleanField(verbose_name=_('Zoom'), default=False)
-
-    def get_data(self):
-        return "/sitemap/json/"
 
     class Meta:
         abstract = True
