@@ -1,14 +1,16 @@
 
 function arc_diagram(config) {
 
-    var width  = config.width;           // width of svg image
-    var height = config.width/2;           // height of svg image
-    var margin = 20;            // amount of margin around plot area
-    var pad = margin / 2;       // actual padding amount
-    var radius = 4;             // fixed node radius
-    var yfixed = pad + radius;  // y position for all nodes
+      var width  = config.width;           // width of svg image
+      var height = config.width/2;           // height of svg image
+      var margin = 20;            // amount of margin around plot area
+      var pad = margin / 2;       // actual padding amount
+      var radius = 4;             // fixed node radius
+      var yfixed = pad + radius;  // y position for all nodes
 
-    d3.json(config.data_source, arcDiagram);
+    d3.json(config.data_source, function(error, graph) {
+      arcDiagram(graph);
+    });
 
     /* HELPER FUNCTIONS */
 
@@ -19,13 +21,13 @@ function arc_diagram(config) {
         var r = parseFloat(circle.attr("r"));
         var text = circle.attr("id");
 
-        var tooltip = d3.select("#plot")
+        var tooltip = d3.select(config.placeholder)
             .append("text")
             .text(text)
             .attr("x", x)
             .attr("y", y)
             .attr("dy", -r * 2)
-            .attr("id", "tooltip");
+            .attr("id", config.placeholder+"tooltip");
 
         var offset = tooltip.node().getBBox().width / 2;
 
@@ -48,21 +50,16 @@ function arc_diagram(config) {
     // Draws an arc diagram for the provided undirected graph
     function arcDiagram(graph) {
         // create svg image
+
         var svg  = d3.select(config.placeholder)
             .append("svg")
-            .attr("id", "arc")
-            .attr("width", width)
-            .attr("height", height);
-
-        // draw border around svg image
-        // svg.append("rect")
-        //     .attr("class", "outline")
-        //     .attr("width", width)
-        //     .attr("height", height);
+            .attr("class", "arc")
+            .attr("width", config.width)
+            .attr("height", config.height);
 
         // create plot area within svg image
         var plot = svg.append("g")
-            .attr("id", "plot")
+            .attr("class", "plot")
             .attr("transform", "translate(" + pad + ", " + pad + ")");
 
         // fix graph links to map to objects instead of indices
@@ -105,7 +102,7 @@ function arc_diagram(config) {
         // used to assign nodes color by group
         var color = d3.scale.category20();
 
-        d3.select("#plot").selectAll(".node")
+        d3.select(config.placeholder+' svg').selectAll(".node")
             .data(nodes)
             .enter()
             .append("circle")
@@ -116,7 +113,7 @@ function arc_diagram(config) {
             .attr("r",  function(d, i) { return radius; })
             .style("fill",   function(d, i) { return color(d.group); })
             .on("mouseover", function(d, i) { addTooltip(d3.select(this)); })
-            .on("mouseout",  function(d, i) { d3.select("#tooltip").remove(); });
+            .on("mouseout",  function(d, i) { d3.select("#"+config.placeholder+"tooltip").remove(); });
     }
 
     // Draws nice arcs for each link on plot
@@ -131,8 +128,10 @@ function arc_diagram(config) {
             .tension(0)
             .angle(function(d) { return radians(d); });
 
+        console.log(config.placeholder);
+
         // add links
-        d3.select(config.placeholder).selectAll(".link")
+        d3.select(config.placeholder+' g').selectAll(".link")
             .data(links)
             .enter()
             .append("path")

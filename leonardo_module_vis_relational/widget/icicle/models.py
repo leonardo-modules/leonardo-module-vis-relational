@@ -10,9 +10,6 @@ class IcicleWidget(RelationalVisualizationWidget):
     """
     zoom = models.BooleanField(verbose_name=_('Zoom'), default=False)
 
-    def get_data(self):
-        return "/sitemap/json/"
-
     class Meta:
         abstract = True
         verbose_name = _("Icicle")

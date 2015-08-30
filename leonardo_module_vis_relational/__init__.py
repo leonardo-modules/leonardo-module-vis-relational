@@ -32,6 +32,7 @@ class Default(object):
     ]
 
     scss_files = [
+        'vis/scss/arcdiagram.scss',
         'vis/scss/bubblechart.scss',
         'vis/scss/circlepacking.scss',
         'vis/scss/dendrogram.scss',

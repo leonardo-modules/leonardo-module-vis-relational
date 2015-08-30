@@ -9,10 +9,12 @@ from django.utils.translation import ugettext_lazy as _
 from leonardo.module.web.models import Widget
 
 SOURCE_TYPES = (
-    ('dummy', _('Dummy data')),
-    ('neo4j', _('Neo4j server')),
-    ('graphml', _('GraphML file')),
-    ('graphson', _('GraphSON file')),
+    ('dummy', _('Hierarchy: Sitemap')),
+    ('flare', _('Network: Flare')),
+    ('miserables', _('Network: Miserables')),
+    ('neo4j', _('Network: Neo4j')),
+    ('graphml', _('Network: GraphML')),
+    ('graphson', _('Network: GraphSON')),
 )
 
 TEST_NODES = [
@@ -146,7 +148,13 @@ class RelationalVisualizationWidget(Widget):
     data = models.ForeignKey(RelationalDataSource, verbose_name=_('Data source'), blank=True, null=True)
 
     def get_data(self):
-        return "/sitemap/json/"
+        
+        if self.data.type == 'flare':
+            return "/static/vis/json/flare.json"
+        elif self.data.type == 'miserables':
+            return "/static/vis/json/miserables.json"
+        else:
+            return "/sitemap/json/"
     
     class Meta:
         abstract = True
