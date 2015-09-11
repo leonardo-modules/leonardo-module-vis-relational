@@ -1,4 +1,5 @@
-function arc_diagram(config) {
+
+function adjacency_matrix(config) {
 
   var margin = {top: 80, right: 0, bottom: 0, left: 80},
       width = config.width-80,
@@ -39,7 +40,6 @@ function arc_diagram(config) {
 
     // Convert links to matrix; count character occurrences.
     json.links.forEach(function(link) {
-  //    console.log(link);
       matrix[link.source][link.target].z += link.value;
       matrix[link.target][link.source].z += link.value;
       matrix[link.source][link.source].z += link.value;
@@ -120,7 +120,7 @@ function arc_diagram(config) {
     }
     
     d3.select(config.placeholder+" select").on("change", function() {
-      clearTimeout(timeout);
+      //clearTimeout(timeout);
       order(this.value);
     });
     
@@ -141,11 +141,12 @@ function arc_diagram(config) {
           .attr("transform", function(d, i) { return "translate(" + x(i) + ")rotate(-90)"; });
     }
 
+    /*
     var timeout = setTimeout(function() {
       order("group");
       d3.select(config.placeholder+" select").property("selectedIndex", 2);
     }, 5000);
-
+    */
   });
 
 }

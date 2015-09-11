@@ -1,0 +1,32 @@
+{% extends widget.get_base_template %}
+
+{% block content %}
+<select>
+  <option value="name">by Name</option>
+  <option value="count">by Frequency</option>
+  <option value="group">by Cluster</option>
+</select>
+
+<div id="adjacency-matrix_{{ widget.fe_identifier }}" class="adjacency-matrix"></div>
+<script type="text/javascript">
+
+function redraw_adjacency_matrix_{{ widget.id }}(){
+  var placeholder = '#adjacency-matrix_{{ widget.fe_identifier }}';
+  var parent_box = $(placeholder).parent();
+  width = parent_box.width();
+  d3.select(placeholder+" svg").remove();
+  adjacency_matrix({
+    'width': width,
+    'height': width,
+    'placeholder': placeholder,
+    'data_source': "{{ widget.get_data }}"
+  });
+}
+
+$(document).ready(function() {
+  redraw_adjacency_matrix_{{ widget.id }}();
+  window.addEventListener("resize", redraw_adjacency_matrix_{{ widget.id }});
+});
+
+</script>
+{% endblock %}

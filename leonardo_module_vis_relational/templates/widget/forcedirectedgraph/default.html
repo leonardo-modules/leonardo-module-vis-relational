@@ -1,7 +1,7 @@
 {% extends widget.get_base_template %}
 
 {% block content %}
-<div id="{{ widget.fe_identifier }}-graph" class="forcedirectedgraph"></div>
+<div id="forcedirectedgraph_{{ widget.fe_identifier }}" class="forcedirected-graph"></div>
 <script>
 
 function redraw_forcedirectedgraph_{{ widget.id }}(){
@@ -9,9 +9,12 @@ function redraw_forcedirectedgraph_{{ widget.id }}(){
   var parent_box = $(placeholder).parent();
   width = parent_box.width();
   d3.select(placeholder+" svg").remove();
-  forcedirectedgraph({
+  force_directed_graph({
     'width': width,
     'height': width,
+    'gravity': {{ widget.gravity }},
+    'distance': {{ widget.distance }},
+    'charge': {{ widget.charge }},
     'placeholder': placeholder,
     'data_source': "{{ widget.get_data }}"
   });

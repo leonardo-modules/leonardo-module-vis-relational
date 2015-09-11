@@ -1,0 +1,24 @@
+
+.adjacency-matrix {
+
+  position: relative;
+
+  select {
+    position: absolute;
+    top:0;
+    left:0;
+  }
+
+  .background {
+    fill: #eee;
+  }
+
+  line {
+    stroke: #fff;
+  }
+
+  text.active {
+    fill: red;
+  }
+
+}

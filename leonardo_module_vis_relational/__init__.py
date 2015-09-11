@@ -12,11 +12,13 @@ LEONARDO_OPTGROUP = 'Relational Visualizations'
 LEONARDO_JS_FILES = [
     'vendor/js/d3.layout.orbit.js',
     'vendor/js/d3.layout.voronoitreemap.js',
+    'vis/js/adjacencymatrix.js',
     'vis/js/arcdiagram.js',
     'vis/js/bubblechart.js',
     'vis/js/circlepacking.js',
     'vis/js/dendrogramlinear.js',
     'vis/js/dendrogramradial.js',
+    'vis/js/forcedirectedgraph.js',
     'vis/js/icicle.js',
     'vis/js/indentedtree.js',
     'vis/js/orbit.js',
@@ -28,6 +30,7 @@ LEONARDO_JS_FILES = [
 ]
 
 LEONARDO_SCSS_FILES = [
+    'vis/scss/adjacencymatrix.scss',
     'vis/scss/arcdiagram.scss',
     'vis/scss/bubblechart.scss',
     'vis/scss/circlepacking.scss',
@@ -45,10 +48,12 @@ LEONARDO_APPS = [
 ]
 
 LEONARDO_WIDGETS = [
+    AdjacencyMatrixWidget,
     ArcDiagramWidget,
     BubbleChartWidget,
     CirclePackingWidget,
     DendrogramWidget,
+    ForceDirectedGraphWidget,
     IcicleWidget,
     IndentedTreeWidget,
     OrbitWidget,

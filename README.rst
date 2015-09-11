@@ -37,3 +37,10 @@ Arc Diagram
 -----------
 
 http://bl.ocks.org/sjengle/5431779
+
+
+Adjacency Matrix
+----------------
+
+- http://bost.ocks.org/mike/miserables/
+- https://gist.github.com/timbresmith/2873404
