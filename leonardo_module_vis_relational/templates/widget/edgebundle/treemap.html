@@ -1,0 +1,26 @@
+{% extends widget.get_base_template %}
+
+{% block content %}
+<div id="{{ widget.fe_identifier }}-graph" class="edgetreemap"></div>
+<script>
+
+function redraw_edgetreemap_{{ widget.id }}(){
+  var placeholder = '#edgetreemap_{{ widget.fe_identifier }}';
+  var parent_box = $(placeholder).parent();
+  width = parent_box.width();
+  d3.select(placeholder+" svg").remove();
+  edgetreemap({
+    'width': width,
+    'height': width,
+    'placeholder': placeholder,
+    'data_source': "{{ widget.get_data }}"
+  });
+}
+
+$(document).ready(function() {
+  redraw_edgetreemap_{{ widget.id }}();
+  window.addEventListener("resize", redraw_edgetreemap_{{ widget.id }});
+});
+
+</script>
+{% endblock %}

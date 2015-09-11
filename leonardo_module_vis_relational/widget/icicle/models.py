@@ -12,5 +12,5 @@ class IcicleWidget(RelationalVisualizationWidget):
 
     class Meta:
         abstract = True
-        verbose_name = _("Icicle")
-        verbose_name_plural = _("Icicles")
+        verbose_name = _("Icicle Diagram")
+        verbose_name_plural = _("Icicle Diagrams")

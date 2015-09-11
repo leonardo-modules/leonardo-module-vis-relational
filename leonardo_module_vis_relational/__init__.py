@@ -1,76 +1,64 @@
 
-import logging
+from django.utils.translation import ugettext_lazy as _
 
 from django.apps import AppConfig
 
-LOG = logging.getLogger(__name__)
-
 from .widget import *
 
-default_app_config = 'leonardo_module_vis_relational.NavConfig'
+default_app_config = 'leonardo_module_vis_relational.Config'
 
-class Default(object):
+LEONARDO_OPTGROUP = 'Relational Visualizations'
 
-    optgroup = ('Relational visualizations')
+LEONARDO_JS_FILES = [
+    'vendor/js/d3.layout.orbit.js',
+    'vendor/js/d3.layout.voronoitreemap.js',
+    'vis/js/arcdiagram.js',
+    'vis/js/bubblechart.js',
+    'vis/js/circlepacking.js',
+    'vis/js/dendrogramlinear.js',
+    'vis/js/dendrogramradial.js',
+    'vis/js/icicle.js',
+    'vis/js/indentedtree.js',
+    'vis/js/orbit.js',
+    'vis/js/sunburst.js',
+    'vis/js/reingoldtilfordtreeradial.js',
+    'vis/js/reingoldtilfordtreelinear.js',
+    'vis/js/treemap.js',
+    'vis/js/voronoitreemap.js'
+]
 
-    js_files = [
-        'vendor/js/d3.layout.orbit.js',
-        'vendor/js/d3.layout.voronoitreemap.js',
-        'vis/js/arcdiagram.js',
-        'vis/js/bubblechart.js',
-        'vis/js/circlepacking.js',
-        'vis/js/dendrogramlinear.js',
-        'vis/js/dendrogramradial.js',
-        'vis/js/icicle.js',
-        'vis/js/indentedtree.js',
-        'vis/js/orbit.js',
-        'vis/js/sunburst.js',
-        'vis/js/reingoldtilfordtreeradial.js',
-        'vis/js/reingoldtilfordtreelinear.js',
-        'vis/js/treemap.js',
-        'vis/js/voronoitreemap.js'
-    ]
+LEONARDO_SCSS_FILES = [
+    'vis/scss/arcdiagram.scss',
+    'vis/scss/bubblechart.scss',
+    'vis/scss/circlepacking.scss',
+    'vis/scss/dendrogram.scss',
+    'vis/scss/icicle.scss',
+    'vis/scss/indentedtree.scss',
+    'vis/scss/orbit.scss',
+    'vis/scss/reingoldtilfordtree.scss',
+    'vis/scss/sunburst.scss',
+    'vis/scss/treemap.scss'
+]
 
-    scss_files = [
-        'vis/scss/arcdiagram.scss',
-        'vis/scss/bubblechart.scss',
-        'vis/scss/circlepacking.scss',
-        'vis/scss/dendrogram.scss',
-        'vis/scss/icicle.scss',
-        'vis/scss/indentedtree.scss',
-        'vis/scss/orbit.scss',
-        'vis/scss/reingoldtilfordtree.scss',
-        'vis/scss/sunburst.scss',
-        'vis/scss/treemap.scss'
-    ]
+LEONARDO_APPS = [
+    'leonardo_module_vis_relational',
+]
 
-    @property
-    def apps(self):
+LEONARDO_WIDGETS = [
+    ArcDiagramWidget,
+    BubbleChartWidget,
+    CirclePackingWidget,
+    DendrogramWidget,
+    IcicleWidget,
+    IndentedTreeWidget,
+    OrbitWidget,
+    ReingoldTilfordTreeWidget,
+    SunburstWidget,
+    TreemapWidget,
+    VoronoiTreemapWidget
+]
 
-        return [
-            'leonardo_module_vis_relational',
-        ]
-
-    @property
-    def widgets(self):
-        return [
-            ArcDiagramWidget,
-            BubbleChartWidget,
-            CirclePackingWidget,
-            DendrogramWidget,
-            IcicleWidget,
-            IndentedTreeWidget,
-            OrbitWidget,
-            ReingoldTilfordTreeWidget,
-            SunburstWidget,
-            TreemapWidget,
-            VoronoiTreemapWidget
-        ]
-
-class NavConfig(AppConfig, Default):
+class Config(AppConfig):
 
     name = 'leonardo_module_vis_relational'
-    verbose_name = "Relational Visualization Module"
-
-
-default = Default()
+    verbose_name = _(LEONARDO_OPTGROUP)

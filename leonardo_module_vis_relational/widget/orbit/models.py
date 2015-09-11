@@ -13,5 +13,5 @@ class OrbitWidget(RelationalVisualizationWidget):
 
     class Meta:
         abstract = True
-        verbose_name = _("Orbit")
-        verbose_name_plural = _("Orbits")
+        verbose_name = _("Orbital Layout")
+        verbose_name_plural = _("Orbital Layouts")

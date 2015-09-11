@@ -12,5 +12,5 @@ class IndentedTreeWidget(RelationalVisualizationWidget):
 
     class Meta:
         abstract = True
-        verbose_name = _("Indented tree")
-        verbose_name_plural = _("Indented trees")
+        verbose_name = _("Indented Tree")
+        verbose_name_plural = _("Indented Trees")
