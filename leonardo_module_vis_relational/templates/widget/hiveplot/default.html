@@ -1,15 +1,15 @@
 {% extends widget.get_base_template %}
 
 {% block content %}
-<div id="{{ widget.fe_identifier }}-graph" class="edgebundle"></div>
+<div id="{{ widget.fe_identifier }}-graph" class="hiveplot"></div>
 <script>
 
-function redraw_edgebundle_{{ widget.id }}(){
-  var placeholder = '#edgebundle_{{ widget.fe_identifier }}';
+function redraw_hiveplot_{{ widget.id }}(){
+  var placeholder = '#hiveplot_{{ widget.fe_identifier }}';
   var parent_box = $(placeholder).parent();
   width = parent_box.width();
   d3.select(placeholder+" svg").remove();
-  edge_bundle({
+  hive_plot({
     'width': width,
     'height': width,
     'placeholder': placeholder,
@@ -18,8 +18,8 @@ function redraw_edgebundle_{{ widget.id }}(){
 }
 
 $(document).ready(function() {
-  redraw_edgebundle_{{ widget.id }}();
-  window.addEventListener("resize", redraw_edgebundle_{{ widget.id }});
+  redraw_hiveplot_{{ widget.id }}();
+  window.addEventListener("resize", redraw_hiveplot_{{ widget.id }});
 });
 
 </script>

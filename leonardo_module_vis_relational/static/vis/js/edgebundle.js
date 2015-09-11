@@ -24,9 +24,9 @@ function edge_bundle(config) {
     .append("g")
       .attr("transform", "translate(" + radius + "," + radius + ")");
 
-  d3.json(config.get_data, function(error, classes) {
+  d3.json(config.data_source, function(error, classes) {
     var nodes = cluster.nodes(packages.root(classes)),
-        links = packages.imports(nodes);
+      links = packages.imports(nodes);
 
     svg.selectAll(".link")
         .data(bundle(links))
