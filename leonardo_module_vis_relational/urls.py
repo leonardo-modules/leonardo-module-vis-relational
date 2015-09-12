@@ -39,7 +39,8 @@ def _get_page_dict(page):
     else:
         output['children'] = []
         for subpage in page.children.all():
-            output['children'].append(_get_page_dict(subpage))
+            if subpage.in_navigation:
+                output['children'].append(_get_page_dict(subpage))
     return output
 
 @standalone
