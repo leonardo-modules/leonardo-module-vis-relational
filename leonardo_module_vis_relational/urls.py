@@ -51,7 +51,8 @@ def site_map_json(request):
     page_list = Page.objects.filter(level=0, active=True)
     for page in page_list:
         root['children'].append(_get_page_dict(page))
-    return JsonResponse(root)
+        break
+    return JsonResponse(root['children'][0])
 
 urlpatterns = patterns('',
     url('^sitemap/json/$', site_map_json, name='site_map_json'),
