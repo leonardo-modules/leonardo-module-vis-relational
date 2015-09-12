@@ -2,12 +2,18 @@
 .treemap {
 
   .node {
-    border: solid 1px white;
-    font: 10px sans-serif;
+    border: solid 2px $text-color;
+    font: 12px sans-serif;
     line-height: 12px;
     overflow: hidden;
     position: absolute;
     text-indent: 2px;
+    text-anchor: middle;
+    text-align: center;
+    vertical-align: middle;
+    color: $tooltip-bg;
+    text-shadow: 0 1px 0 $tooltip-color, 1px 0 0 $tooltip-color, -1px 0 0 $tooltip-color, 0 -1px 0 $tooltip-color;
+
   }
 
 }

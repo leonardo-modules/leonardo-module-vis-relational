@@ -1,5 +1,3 @@
-
-/*
 (function() {
 
 var ρ = Math.SQRT2,
@@ -61,17 +59,18 @@ function tanh(x) {
 }
 
 })();
-*/
 
 function circle_packing(config) {
 
   var margin = 20,
-    diameter = config.width;
-
+      diameter = config.width;
+  /*
   var color = d3.scale.linear()
       .domain([-1, 5])
       .range(["hsl(152,80%,80%)", "hsl(228,30%,40%)"])
       .interpolate(d3.interpolateHcl);
+  */
+  var color = d3.scale.category20c();
 
   var pack = d3.layout.pack()
       .padding(2)
@@ -85,7 +84,7 @@ function circle_packing(config) {
       .attr("transform", "translate(" + diameter / 2 + "," + diameter / 2 + ")");
 
   d3.json(config.data_source, function(error, root) {
-    if (error) return console.error(error);
+    if (error) throw error;
 
     var focus = root,
         nodes = pack.nodes(root),
@@ -109,7 +108,7 @@ function circle_packing(config) {
     var node = svg.selectAll("circle,text");
 
     d3.select(config.placeholder)
-        .on("click", function() { zoom(root); });
+      .on("click", function() { zoom(root); });
 
     zoomTo([root.x, root.y, root.r * 2 + margin]);
 
@@ -137,4 +136,5 @@ function circle_packing(config) {
     }
   });
 
+  d3.select(self.frameElement).style("height", diameter + "px");
 }

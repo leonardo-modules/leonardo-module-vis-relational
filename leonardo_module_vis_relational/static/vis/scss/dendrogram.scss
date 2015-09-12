@@ -10,9 +10,8 @@
     }
     
     text {
-      fill: $tooltip-color;
-      background-color: $tooltip-bg;
-      border-radius: 2px;
+      fill: $tooltip-bg;
+      text-shadow: 0 1px 0 $tooltip-color, 1px 0 0 $tooltip-color, -1px 0 0 $tooltip-color, 0 -1px 0 $tooltip-color;
     }
 
   }

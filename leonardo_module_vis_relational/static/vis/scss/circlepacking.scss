@@ -2,7 +2,8 @@
 .circle-packing {
 
   .node {
-    cursor: pointer;
+    stroke: $text-color;
+    stroke-width: 2px;
   }
 
   .node:hover {
@@ -24,4 +25,5 @@
   .node--leaf {
     pointer-events: none;
   }
+
 }
