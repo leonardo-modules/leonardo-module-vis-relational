@@ -35,6 +35,7 @@ LEONARDO_SCSS_FILES = [
     'vis/scss/adjacencymatrix.scss',
     'vis/scss/arcdiagram.scss',
     'vis/scss/bubblechart.scss',
+    'vis/scss/bubblechart.scss',
     'vis/scss/circlepacking.scss',
     'vis/scss/dendrogram.scss',
     'vis/scss/icicle.scss',
@@ -62,10 +63,13 @@ LEONARDO_WIDGETS = [
     IndentedTreeWidget,
     OrbitWidget,
     ReingoldTilfordTreeWidget,
+    SugiyamaGraphWidget,
     SunburstWidget,
     TreemapWidget,
     VoronoiTreemapWidget
 ]
+
+LEONARDO_PUBLIC = True
 
 class Config(AppConfig):
 

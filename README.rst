@@ -36,11 +36,16 @@ http://www.infielddesign.com/team/news/post/orbital-relationships-in-d3js-force-
 Arc Diagram
 -----------
 
-http://bl.ocks.org/sjengle/5431779
-
+- http://bl.ocks.org/sjengle/5431779
 
 Adjacency Matrix
 ----------------
 
 - http://bost.ocks.org/mike/miserables/
 - https://gist.github.com/timbresmith/2873404
+
+Sugiyama Graph
+--------------
+
+- https://github.com/cpettitt/dagre-d3
+- http://cpettitt.github.io/project/dagre-d3/latest/demo/hover.html
