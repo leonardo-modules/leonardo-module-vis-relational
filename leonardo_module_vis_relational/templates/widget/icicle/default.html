@@ -1,7 +1,7 @@
 {% extends widget.get_base_template %}
 
 {% block content %}
-<div id="{{ widget.fe_identifier }}-graph" class="icicle"></div>
+<div id="icicle_{{ widget.fe_identifier }}" class="icicle"></div>
 <script>
 
 function redraw_icicle_{{ widget.id }}(){
