@@ -60,8 +60,8 @@ function orbit_layout(config) {
 
   function nodeOut() {
     orbit.start();
-    d3.selectAll("text").remove();
-    d3.selectAll("g.node > circle").style("stroke", "none").style("stroke-width", 0);    
+    vis.selectAll("text").remove();
+    vis.selectAll("g.node > circle").style("stroke", "none").style("stroke-width", 0);    
   }
 
 }
