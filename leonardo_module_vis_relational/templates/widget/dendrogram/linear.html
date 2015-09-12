@@ -3,17 +3,24 @@
 {% block content %}
 <div id="{{ widget.fe_identifier }}-graph" class="dendrogram"></div>
 <script>
-$(document).ready(function() {
+
+function redraw_dendrogram_{{ widget.id }}(){
   var placeholder = '#{{ widget.fe_identifier }}-graph';
   var parent_box = $(placeholder).parent();
   width = parent_box.width();
-  var config = {
+  d3.select(placeholder+" svg").remove();
+  dendrogram_linear({
     'width': width,
     'height': width,
     'placeholder': placeholder,
     'data_source': "{{ widget.get_data }}"
-  }
-  dendrogram_linear(config);
+  });
+}
+
+$(document).ready(function() {
+  redraw_dendrogram_{{ widget.id }}();
+  window.addEventListener("resize", redraw_dendrogram_{{ widget.id }});
 });
+
 </script>
 {% endblock %}

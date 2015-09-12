@@ -3,16 +3,24 @@
 {% block content %}
 <div id="{{ widget.fe_identifier }}-graph" class="bubble-chart"></div>
 <script>
-$(document).ready(function() {
+
+function redraw_bubble_chart_{{ widget.id }}(){
   var placeholder = '#{{ widget.fe_identifier }}-graph';
   var parent_box = $(placeholder).parent();
   width = parent_box.width();
+  d3.select(placeholder+" svg").remove();
   bubble_chart({
     'width': width,
     'height': width,
     'placeholder': placeholder,
     'data_source': "{{ widget.get_data }}"
   });
+}
+
+$(document).ready(function() {
+  redraw_bubble_chart_{{ widget.id }}();
+  window.addEventListener("resize", redraw_bubble_chart_{{ widget.id }});
 });
+
 </script>
 {% endblock %}
