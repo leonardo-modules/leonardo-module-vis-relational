@@ -5,6 +5,11 @@ Leonardo Relational Visualizations
 
 http://bost.ocks.org/mike/chart/ Towards Reusable Charts
 
+Tooltips
+--------
+
+- http://bl.ocks.org/ilyabo/1373263 D3 tooltip using jQuery tipsy
+
 Treemap
 -------
 

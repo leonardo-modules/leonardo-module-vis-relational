@@ -10,6 +10,8 @@ default_app_config = 'leonardo_module_vis_relational.Config'
 LEONARDO_OPTGROUP = 'Relational Visualizations'
 
 LEONARDO_JS_FILES = [
+    'vendor/js/d3.cola.js',
+    'vendor/js/d3.dagre.js',
     'vendor/js/d3.layout.orbit.js',
     'vendor/js/d3.layout.voronoitreemap.js',
     'vis/js/adjacencymatrix.js',
