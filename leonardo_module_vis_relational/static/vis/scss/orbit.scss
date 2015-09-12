@@ -9,7 +9,9 @@
 
 
   text {
-    fill: $tooltip-color;
+    fill: $tooltip-bg;
+    text-shadow: 0 1px 0 $tooltip-color, 1px 0 0 $tooltip-color, -1px 0 0 $tooltip-color, 0 -1px 0 $tooltip-color;
+
     stroke-width: 0px;
   }
 
