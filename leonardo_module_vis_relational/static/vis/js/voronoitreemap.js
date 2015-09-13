@@ -35,21 +35,8 @@ function voronoitreemap(config) {
 	var height = config.height;
 	var border = 10;
 	var svg_container = d3.select(config.placeholder).append("svg")
-		.attr("width", width)
-		.attr("height", height);
-//		.attr("id","svgid");
-
-	var select_polygon = get_selected_polygon();
-
-	var vt = d3.layout.voronoitreemap()
-		.root_polygon(select_polygon)
-		.value(function(d) {return d.size; })
-		.iterations(100);
-
-    d3.json(config.data_source, function(error, data) {
-		newnodes = vt(data);
-		paint(newnodes);
-    });
+		.attr("width",width)
+		.attr("height",height);
 
 	///////// bounding polygon
 	function get_selected_polygon() {
@@ -60,7 +47,7 @@ function voronoitreemap(config) {
 			[width_less_border,height_less_border],
 			[width_less_border,border]];
 
-		var select_polygon = "rectangle";//d3.select("#select_polygon").node().value;
+		var select_polygon = config.base_polygon;
 		if (select_polygon == "rectangle") {
 			return entire_svg_polygon;
 		}
@@ -82,8 +69,7 @@ function voronoitreemap(config) {
 		return "M" + d.join("L") + "Z";
 	}
 
-
-	var paint = function(nodes) {
+	var paint = function(nodes){
 		svg_container.selectAll("path").remove();
 
 		// background color
@@ -97,15 +83,14 @@ function voronoitreemap(config) {
 			.attr("fill", background_color);
 
 		// strokes by depth
-		// a bit awkward to use the UI element here
-		var stroke_by_depth = d3.select("#checkbox_stroke").property('checked');		
+		var stroke_by_depth = true;		
 		var stroke_min = 2,
 			stroke_max = stroke_by_depth ? 10 : stroke_min,
 			stroke_levels = 3,// could determine from max depth...see color...
 			stroke_delta = (stroke_max - stroke_min) * 1.0 / stroke_levels;
 		
 		// color
-		var select_color = d3.select("#select_color").node().value;
+		var select_color = 'name';
 		if (select_color == "linear") {
 			var nodes_all_depths = nodes.map(function(x) {return x.depth});
 			var nodes_max_depth = Math.max.apply(null, nodes_all_depths);
@@ -122,14 +107,12 @@ function voronoitreemap(config) {
 		}
 		
 		// any maximum depth?
-		var select_max_depth = d3.select("#select_max_depth").node().value;
+		//var select_max_depth = d3.select("#select_max_depth").node().value;
 		var max_depth = 12; // or whatever big thing...
-		if (select_max_depth != "none") {
-			max_depth = parseInt(select_max_depth);
-		}
-		
-		
-		
+		//if (select_max_depth != "none") {
+		//	max_depth = parseInt(select_max_depth);
+		//}
+
 		// consolidate and draw polygons
 	    var selected_node_list = [];
 	    for (var i = 0; i < nodes.length; i++){
@@ -189,4 +172,23 @@ function voronoitreemap(config) {
 				.attr("fill", "none");
 		}
 	}
+
+	function compute() {
+		
+		var newnodes;
+		var select_polygon = get_selected_polygon();
+
+		var vt = d3.layout.voronoitreemap()
+			.root_polygon(select_polygon)
+			.value(function(d) {return d.size; })
+			.iterations(100);
+		
+		//var select_dataset = get_selected_dataset();
+		d3.json(config.data_source, function(error, root) {
+			newnodes = vt(root);
+			paint(newnodes);
+		});
+	}
+
+    compute();
 }

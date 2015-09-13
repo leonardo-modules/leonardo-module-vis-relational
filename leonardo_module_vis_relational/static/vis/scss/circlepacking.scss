@@ -15,7 +15,7 @@
     fill: white;
   }
 
-  .label {
+  text {
     text-anchor: middle;
     text-shadow: 0 1px 0 $tooltip-color, 1px 0 0 $tooltip-color, -1px 0 0 $tooltip-color, 0 -1px 0 $tooltip-color;
   }

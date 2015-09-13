@@ -55,13 +55,13 @@ function orbit_layout(config) {
   function nodeOver(d) {
     orbit.stop();
     d3.select(this).append("text").text(d.name).style("text-anchor", "middle").attr("y", 35);
-    d3.select(this).select("circle").style("stroke", "black").style("stroke-width", 2);
+    d3.select(this).select("circle").style("stroke", "black");
   }
 
   function nodeOut() {
     orbit.start();
     vis.selectAll("text").remove();
-    vis.selectAll("g.node > circle").style("stroke", "none").style("stroke-width", 0);    
+    vis.selectAll("g.node > circle").style("stroke", "white"); 
   }
 
 }
