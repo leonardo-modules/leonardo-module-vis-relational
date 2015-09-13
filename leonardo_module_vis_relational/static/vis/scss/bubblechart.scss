@@ -1,10 +1,18 @@
 
-.bubble-chart {
+.bubble {
 
-  circle {
-    stroke: $text-color;
-    stroke-width: 2px;
-    text-shadow: 0 1px 0 $tooltip-color, 1px 0 0 $tooltip-color, -1px 0 0 $tooltip-color, 0 -1px 0 $tooltip-color;
+  .node {
+
+    circle {
+      stroke: $text-color;
+      stroke-width: 2px;
+    }
+
+    text {
+      fill: $tooltip-bg;
+      text-shadow: 0 1px 0 $tooltip-color, 1px 0 0 $tooltip-color, -1px 0 0 $tooltip-color, 0 -1px 0 $tooltip-color;
+    }
+
   }
 
 }
