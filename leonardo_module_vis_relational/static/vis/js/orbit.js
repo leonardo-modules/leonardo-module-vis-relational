@@ -15,6 +15,7 @@ function orbit_layout(config) {
   .children(function(d) {return d.children})
   .revolution(function(d) {return d.depth})
   .orbitSize(function(d) {return orbitScale(d.depth)})
+  .mode(config.mode)
   .speed(.1)
   .nodes(config.data);
 
