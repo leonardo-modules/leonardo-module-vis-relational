@@ -35,6 +35,6 @@ def site_map_json(request):
     return JsonResponse(root['children'][0])
 
 urlpatterns = patterns('',
-                       url('^vis/sitemap/json/$', site_map_json,
+                       url('^vis-relational-data/sitemap/$', site_map_json,
                            name='site_map_json'),
                        )

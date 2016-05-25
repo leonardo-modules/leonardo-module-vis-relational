@@ -1,11 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.db import models
-from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
-
-#from yamlfield.fields import YAMLField
-
 from leonardo.module.web.models import Widget
 
 SOURCE_TYPES = (
@@ -48,26 +44,29 @@ TEST_NODES = [
         'size': 9,
         'cluster': 2
     }
-];
+]
 
 TEST_LINKS = [
-    [ 1, 2 ],
-    [ 1, 5 ],
-    [ 5, 1 ],
-    [ 1, 4 ],
-    [ 2, 3 ],
-    [ 1, 3 ],
-    [ 3, 4 ],
-    [ 4, 5 ],
-    [ 4, 1 ],
-    [ 5, 2 ]
-];
+    [1, 2],
+    [1, 5],
+    [5, 1],
+    [1, 4],
+    [2, 3],
+    [1, 3],
+    [3, 4],
+    [4, 5],
+    [4, 1],
+    [5, 2]
+]
+
 
 class RelationalDataSource(models.Model):
-    type  = models.CharField(max_length=255, verbose_name=_("type"), default='neo4j', choices=SOURCE_TYPES)
+    type = models.CharField(max_length=255, verbose_name=_(
+        "type"), default='neo4j', choices=SOURCE_TYPES)
     name = models.CharField(max_length=255, verbose_name=_("name"))
     #data = YAMLField(verbose_name=_("data"), help_text=_('For neo4j set: host, port, ssl, graph, user, passwd; for graph files: url'))
-    data = models.TextField(verbose_name=_("data"), help_text=_('For neo4j set: host, port, ssl, graph, user, passwd; for graph files: url'))
+    data = models.TextField(verbose_name=_("data"), help_text=_(
+        'For neo4j set: host, port, ssl, graph, user, passwd; for graph files: url'))
 
     def __unicode__(self):
         return self.name
@@ -83,7 +82,8 @@ class RelationalDataSource(models.Model):
             prefix = 'https'
         else:
             prefix = 'http'
-        url = '%s://%s:%s/%s' % (prefix, self.data['host'], self.data['port'], self.data['graph'])
+        url = '%s://%s:%s/%s' % (prefix,
+                                 self.data['host'], self.data['port'], self.data['graph'])
         return url
     server_url = property(_server_url)
 
@@ -125,13 +125,14 @@ class RelationalDataSource(models.Model):
                         'name': node.data()['structured_label'],
                         'group': 1,
                         'size': 1,
-#                        'type': node.data()['element_type'],
+                        #                        'type': node.data()['element_type'],
                         'id': node.eid,
                         'edges': []
                     }
         for edge in g.E:
             if edge.label() in edges and edge.inV().data()['element_type'] in nodes and edge.outV().data()['element_type'] in nodes:
-                data[edge.inV().eid]['edges'].append(edge.outV().data()['structured_label'])
+                data[edge.inV().eid]['edges'].append(
+                    edge.outV().data()['structured_label'])
         output = []
         for key, item in data.items():
             output.append(item)
@@ -141,20 +142,22 @@ class RelationalDataSource(models.Model):
         verbose_name = _("Graph data source")
         verbose_name_plural = _("graph data sources")
 
+
 class RelationalVisualizationWidget(Widget):
     """
     Graph widget mixin.
     """
-    data = models.ForeignKey(RelationalDataSource, verbose_name=_('Data source'), blank=True, null=True)
+    data = models.ForeignKey(RelationalDataSource, verbose_name=_(
+        'Data source'), blank=True, null=True)
 
     def get_data(self):
-        
+
         if self.data.type == 'flare':
             return "/static/vis/json/flare.json"
         elif self.data.type == 'miserables':
             return "/static/vis/json/miserables.json"
         else:
-            return "/sitemap/json/"
-    
+            return "/vis-relational-data/sitemap/"
+
     class Meta:
         abstract = True
